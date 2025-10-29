@@ -3,7 +3,9 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
   reactStrictMode: true,
-  output: isProd ? "export" : undefined, // ✅ export เฉพาะตอน production
+  output: isProd ? "export" : undefined,
+  basePath: isProd ? "/todo-frontend" : "",
+  assetPrefix: isProd ? "/todo-frontend/" : "",
   images: { unoptimized: true },
   env: {
     NEXT_PUBLIC_API_URL:
