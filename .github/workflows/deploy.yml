@@ -43,13 +43,9 @@ jobs:
       
       - name: Build Next.js app
         env:
-          NEXT_PUBLIC_API_URL: https://flask-todo-cicd.onrender.com/api
+          NEXT_PUBLIC_API_URL: https://flask-todo-app-alh8.onrender.com/api  # ✅ ใช้ของจริง
           NODE_ENV: production
-        run: |
-          npm run build
-          ls -la out/
-          echo "Checking for CSS files..."
-          find out -name "*.css" | head -5
+        run: npm run build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -69,4 +65,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
