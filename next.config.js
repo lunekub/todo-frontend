@@ -1,16 +1,19 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
   reactStrictMode: true,
-  // ❌ อย่าใช้ output/basePath ตอนรัน dev
-  // output: 'export',
-  // basePath: '/todo-frontend',
-  // assetPrefix: '/todo-frontend/',
+  output: isProd ? "export" : undefined, // ✅ export เฉพาะตอน production
   images: { unoptimized: true },
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_URL:
+      process.env.NEXT_PUBLIC_API_URL ||
+      "https://flask-todo-app-alh8.onrender.com/api",
   },
 };
 
-console.log("✅ Loaded ENV from next.config.js:", process.env.NEXT_PUBLIC_API_URL);
+console.log(
+  `✅ Loaded ENV from next.config.js: ${nextConfig.env.NEXT_PUBLIC_API_URL}`
+);
 
 module.exports = nextConfig;
